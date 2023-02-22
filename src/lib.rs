@@ -17,7 +17,7 @@ pub fn decode(inword: &str) -> Result<String, String> {
     let mut outword = String::new();
 
     if inword.len() as f64 % 3.0 != 0.0 {
-        return Err(String::from("Input invalid (check for missed chars?)"))
+        return Err(String::from("Input invalid (length not divisible by 3)"))
     }
     for i in 0..inword.len()/3 {
         let midword: u8 = match inword[3*i .. 3*i + 3].parse(){
