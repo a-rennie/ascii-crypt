@@ -2,7 +2,7 @@
 really basic encryption program to figure out how rust works
 ## how to use
 Calling either the `encode(&str)` or the `decode(&str)` function returns a `Result<String, String>`.
-Calling `encode()` returns a `Result<T, E>` with each char of the input `&str` replaced with a three digit ascii value,
+Calling `encode()` should return an `Ok(String)` with each char of the input `&str` replaced with a three digit ascii value,
 and `decode` returns the inverse (each three digit segment replaced with an ascii character).\
 \
 `main.rs` also includes a basic demonstration of the program

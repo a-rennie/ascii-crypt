@@ -7,7 +7,7 @@ pub fn encode(inword: &str) -> Result<String, String> {
         if char > 255{
             return Err(String::from("Encode function does not support unicode chars (> U+255)"))
         }
-        let midword = &format!("{}{}", "000", &char.to_string());
+        let midword = format!("{}{}", "000", &char.to_string());
         outword += &midword[midword.len() - 3 .. midword.len()];
     }
     Ok(outword)
