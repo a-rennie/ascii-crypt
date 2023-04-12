@@ -14,7 +14,7 @@ pub enum DecodeError {
     #[error("Input invalid (length not divisible by 3)")]
     InvalidLength,
     #[error("Input invalid (not all numbers). Invalid char is in this string: {0}")]
-    UnexpectedChar(String),
+    UnexpectedCharIn(String),
     #[error("Unknown error ({0})")]
     UnknownError(Box<dyn Error>)
 }
@@ -41,7 +41,7 @@ pub fn decode(inword: &str) -> Result<String, DecodeError> {
         let midword: u8 = match inword[3*i .. 3*i + 3].parse() {
             Ok(ascii) => ascii,
             Err(err) => return match err.kind() {
-                IntErrorKind::InvalidDigit => Err(DecodeError::UnexpectedChar(inword[3*i .. 3*i + 3].to_owned())),
+                IntErrorKind::InvalidDigit => Err(DecodeError::UnexpectedCharIn(inword[3*i .. 3*i + 3].to_owned())),
                 _ => Err(UnknownError(Box::new(err))),
             },
         };
