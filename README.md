@@ -8,23 +8,23 @@ and `decode` returns the inverse (each three digit segment replaced with an asci
 `main.rs` also includes a basic demonstration of the program
 ## examples
 ```rust
-ascii-crypt::encode("example input");
+ascii_crypt::encode("example input");
 ```
 returns `Ok("049050051010101120097109112108101032105110112117116")`
 ```rust
-ascii-crypt::encode("049050051010101120097109112108101032111117116112117116");
+ascii_crypt::encode("049050051010101120097109112108101032111117116112117116");
 ```
 returns `Ok("example output")`
 ### error examples
 ```rust
-ascii-crypt::encode("emojis don't work > 🦀") {
+ascii_crypt::encode("emojis don't work > 🦀") {
 ```
-returns `Err("Encode function does not support unicode chars (> U+255)")`
+returns `Err(EncodeError::CharNotAscii('🦀'))`
 ```rust
-ascii-crypt::decode("i am definitely a number")
+ascii_crypt::decode("i am definitely a number")
 ```
-returns `Err("Input invalid (not all numbers)")` (note that in order for this error to occur, `input.len()` must be divisible by 3, otherwise the error below occurs)
+returns `Err(DecodeError::UnexpectedCharIn("i a"))` (note that in order for this error to occur, `input.len()` must be divisible by 3, otherwise the error below occurs)
 ```rust
-ascii-crypt::decode("07334")
+ascii_crypt::decode("07334")
 ```
-returns `Err("Input invalid (length not divisible by 3)")`
+returns `Err(InvalidLength)`
