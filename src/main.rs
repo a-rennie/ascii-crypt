@@ -7,6 +7,14 @@ fn main() {
     println!("enter string to encode");
     io::stdin().read_line(&mut input).unwrap();
     println!("{}", encode(input.trim()).unwrap());
+    match decode("asdflsdfhkasdff") {
+        Ok(_) => (),
+        Err(err) => println!("{err}")
+    }
+    match encode("❦") {
+        Ok(_) => (),
+        Err(err) => println!("{err}")
+    }
     input = String::new();
     println!("enter string to decode");
     io::stdin().read_line(&mut input).unwrap();
