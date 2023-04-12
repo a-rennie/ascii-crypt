@@ -1,6 +1,6 @@
-use std::io;
 use ascii_crypt::decode;
 use ascii_crypt::encode;
+use std::io;
 
 fn main() {
     let mut input = String::new();
